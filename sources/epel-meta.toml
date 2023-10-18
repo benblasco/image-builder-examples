@@ -1,0 +1,9 @@
+check_gpg = false
+check_repogpg = false
+check_ssl = false
+id = "epel-meta"
+name = "epel-meta"
+rhsm = false
+system = false
+type = "yum-metalink"
+url = "https://mirrors.fedoraproject.org/metalink?repo=epel-9&arch=$basearch&infra=$infra&content=$contentdir"
