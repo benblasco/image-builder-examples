@@ -7,4 +7,5 @@ name = "codeready-builder-for-rhel-9-x86_64-rpms"
 rhsm = true
 system = true
 type = "yum-baseurl"
+#url = "https://cdn.redhat.com/content/dist/rhel9/$releasever/x86_64/codeready-builder/os"
 url = "https://cdn.redhat.com/content/dist/rhel9/9.2/x86_64/codeready-builder/os"
