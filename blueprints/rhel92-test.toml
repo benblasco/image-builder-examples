@@ -25,10 +25,11 @@ version = "*"
 #version = "*"
 
 # Packages from EPEL
+# Azure CLI also depends on packages from codeready-builder repo
 [[packages]]
 name = "azure-cli"
 version = "*"
-# AWS CLI depends on packages from codeready-builder repo
+# AWS CLI also depends on packages from codeready-builder repo
 [[packages]]
 name = "awscli"
 version = "*"
