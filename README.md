@@ -21,44 +21,31 @@ source /etc/bash_completion.d/composer-cli
 # Add an external repo
 
 ```
-cat epel-testing-9.toml 
-```
-
-```
-id = "epel-testing"
-name = "Extra Packages for Enterprise Linux $releasever - Testing - $basearch"
-type = "yum-baseurl"
-distros = ["rhel-9"]
-url = "https://mirrors.fedoraproject.org/metalink?repo=testing-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir"
-check_gpg = false
-check_ssl = false
-system = false
-```
-
-```
-composer-cli sources add  epel-testing-9.toml
+composer-cli sources add <repo name>.toml
 composer-cli sources list
 ```
 
 # Create a blueprint
 
 ```
-composer-cli blueprints push rhel92-partition-blueprint.toml
-composer-cli blueprints depsolve rhel92-partition-blueprint
-composer-cli compose start rhel92-partition-blueprint qcow2
+composer-cli blueprints push <blueprint name>.toml
+composer-cli blueprints depsolve <blueprint name>
+composer-cli compose start <blueprint name> qcow2
 composer-cli compose status
 watch -n 5 composer-cli compose status
+```
 
+Check the results
+```
 journalctl -u osbuild-worker@1
 journalctl -xe -f -u osbuild-worker@1.service 
 
 ```
 
-Download the file
+Download/generate the file
 ```
 composer-cli compose image <UUID>
 ```
-
 
 ### Logs for tracing
 
@@ -87,5 +74,4 @@ https://www.redhat.com/sysadmin/install-epel-linux
 - pre-load configuration so that a system is *NEVER* booted with unacceptable configurations (e.g. not yet hardened)
 - Enable services at first boot
 - Add more repos and install software from those repos
-
-We are shooting for immutable infrastructure
+- Brings us closer to immutable infrastructure
