@@ -17,6 +17,9 @@ version = "*"
 [[packages]]
 name = "bash-completion"
 version = "*"
+[[packages]]
+name = "qemu-guest-agent"
+version = "*"
 #[[packages]]
 #name = "epel-release"
 #version = "*"
