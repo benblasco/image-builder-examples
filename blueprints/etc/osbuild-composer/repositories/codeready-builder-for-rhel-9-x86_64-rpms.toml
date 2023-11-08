@@ -1,0 +1,9 @@
+{
+  "x86_64": [
+    {
+      "baseurl": "https://cdn.redhat.com/content/dist/rhel9/9.2/x86_64/codeready-builder/os",
+      "gpgkey": "<Insert GPG key here>",
+      "rhsm": true
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+name = "rhel92-with-repos"
+description = "RHEL 9.2 test blueprint"
+version = "0.0.1"
+modules = []
+#groups = []
+
+# Packages from regular BaseOS and AppStream repos
+[[packages]]
+name = "vim"
+version = "*"
+[[packages]]
+name = "tmux"
+version = "*"
+[[packages]]
+name = "git"
+version = "*"
+[[packages]]
+name = "bash-completion"
+version = "*"
+[[packages]]
+name = "qemu-guest-agent"
+version = "*"
+#[[packages]]
+#name = "epel-release"
+#version = "*"
+#[[packages]]
+#name = "epel-next-release"
+#version = "*"
+
+# Packages from codeready-builder Repo
+[[packages]]
+name = "epel-release"
+version = "*"
+[[packages]]
+name = "epel-next-release"
+version = "*"
+
+# Packages from EPEL
+# Azure CLI also depends on packages from codeready-builder repo
+[[packages]]
+name = "azure-cli"
+version = "*"
+# AWS CLI also depends on packages from codeready-builder repo
+[[packages]]
+name = "awscli"
+version = "*"
+[[packages]]
+name = "htop"
+version = "*"
+
+[[groups]]
+name = "Container Management"
+
+[customizations]
+
+# 2GB for /var
+[[customizations.filesystem]]
+mountpoint = "/var"
+size = 2147483648
+
+# 2GB for /home
+[[customizations.filesystem]]
+mountpoint = "/home"
+size = 2147483648
+
+#[[customizations.group]]
+#name = "testuser"
+#gid = 1200
+
+[[customizations.user]]
+name = "testuser"
+description = "Image Builder Testing User"
+#password = "$6$CHO2$3rN8eviE2t50lmVyBYihTgVRHcaecmeCk31L..."
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCY9P2Hh1ultuvNlBGHxQGNYlDkB35Z/kPQNR+tfsYaO2gGLhbtkVI0uoXf5SewEz5ecH+u8jHIPElXZz227h5PpxhZFzfokqUJ/U3mbEpu1/Krf4/eERCqIgz2nmXoGLlOJHgMk4MpK6LA6eb6SXZHLpxFicbEcCxUU3A9hbzhWUGDaMFG7CcExT5JAD/7VcniONxZhlJxUzyL1xmbmAN13DQpiUkew25VtuNHby1fYTgMxVaezUMfMwZn6qpNJUDXGCKX1NWv5kqB9yFxRIQbFS4zAkQPXH6w7eksNyknexRDwM1zghnaspSvE1Kn2RWIaKt5hmaoKozJuC9YnCwJ bblasco@localhost.localdomain"
+#home = "/home/testuser"
+#shell = "/bin/bash"
+#groups = ["users", "wheel"]
+#uid = 1200
+#gid = 1200
+
+[customizations.timezone]
+timezone = "Australia/Melbourne"
+
+[customizations.locale]
+languages = ["en_US.UTF-8"]
+keyboard = "us"
+
+[customizations.services]
+enabled = ["sshd", "cockpit.socket"]
+
+[[customizations.directories]]
+path = "/etc/foobar"
+mode = "0755"
+user = "root"
+group = "root"
+ensure_parents = false
+
+[[customizations.files]]
+path = "/etc/foobar/foofile"
+mode = "0644"
+user = "root"
+group = "root"
+data = "Hello world!"
+
+[customizations.openscap]
+datastream = "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
+profile_id = "xccdf_org.ssgproject.content_profile_cis"
